@@ -253,6 +253,28 @@ document.addEventListener('DOMContentLoaded', () => {
   function startThoughtBubblesCycle() {
     if (thoughtInterval) clearInterval(thoughtInterval);
 
+    // Disable the reply button for 15 seconds so she can read the thoughts
+    if (goToReplyBtn) {
+      goToReplyBtn.disabled = true;
+      goToReplyBtn.style.opacity = '0.45';
+      goToReplyBtn.style.cursor = 'not-allowed';
+      let countdown = 15;
+      goToReplyBtn.querySelector('span').textContent = `Read his thoughts... (${countdown}s)`;
+
+      const countdownTimer = setInterval(() => {
+        countdown--;
+        if (countdown > 0) {
+          goToReplyBtn.querySelector('span').textContent = `Read his thoughts... (${countdown}s)`;
+        } else {
+          clearInterval(countdownTimer);
+          goToReplyBtn.disabled = false;
+          goToReplyBtn.style.opacity = '1';
+          goToReplyBtn.style.cursor = 'pointer';
+          goToReplyBtn.querySelector('span').textContent = 'He Has One Last Question For You... 💌';
+        }
+      }, 1000);
+    }
+
     const updateThought = () => {
       if (!thoughtBubbleText) return;
       thoughtBubbleText.style.opacity = '0';
@@ -273,6 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (goToReplyBtn) {
     goToReplyBtn.addEventListener('click', () => {
+      if (goToReplyBtn.disabled) return;
       switchScene('sitting', 'reply');
     });
   }
