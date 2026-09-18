@@ -15,6 +15,37 @@
 </head>
 <body>
 
+  <!-- ============ LOADING SCREEN WITH HEART RAIN ============ -->
+  <div class="loading-screen" id="loading-screen">
+    <div class="loading-hearts-rain">
+      <span style="left:3%;animation-duration:2.2s;animation-delay:0s;">💗</span>
+      <span style="left:8%;animation-duration:2.8s;animation-delay:0.3s;">❤️</span>
+      <span style="left:14%;animation-duration:2.4s;animation-delay:0.7s;">💕</span>
+      <span style="left:20%;animation-duration:3.0s;animation-delay:0.1s;">💖</span>
+      <span style="left:26%;animation-duration:2.6s;animation-delay:0.5s;">💗</span>
+      <span style="left:32%;animation-duration:2.3s;animation-delay:0.9s;">❤️</span>
+      <span style="left:38%;animation-duration:2.9s;animation-delay:0.2s;">💕</span>
+      <span style="left:44%;animation-duration:2.5s;animation-delay:0.6s;">💖</span>
+      <span style="left:50%;animation-duration:2.7s;animation-delay:0.4s;">💗</span>
+      <span style="left:56%;animation-duration:2.2s;animation-delay:0.8s;">❤️</span>
+      <span style="left:62%;animation-duration:3.1s;animation-delay:0.15s;">💕</span>
+      <span style="left:68%;animation-duration:2.4s;animation-delay:0.55s;">💖</span>
+      <span style="left:74%;animation-duration:2.8s;animation-delay:0.35s;">💗</span>
+      <span style="left:80%;animation-duration:2.6s;animation-delay:0.75s;">❤️</span>
+      <span style="left:86%;animation-duration:2.3s;animation-delay:0.45s;">💕</span>
+      <span style="left:92%;animation-duration:2.9s;animation-delay:0.65s;">💖</span>
+      <span style="left:97%;animation-duration:2.5s;animation-delay:0.25s;">💗</span>
+    </div>
+    <div class="loading-content">
+      <div class="loading-heart-icon">💝</div>
+      <p class="loading-preparing">Preparing something special...</p>
+      <h1 class="loading-name">THARUSHI VISHMIKA</h1>
+      <div class="loading-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+
   <!-- Dynamic Starfield, Petals & Confetti Canvas -->
   <canvas id="particle-canvas"></canvas>
 
@@ -29,7 +60,7 @@
   </aside>
 
   <!-- Main Multi-Scene Container -->
-  <main class="story-container">
+  <main class="story-container" style="display:none;" id="story-container">
 
     <!-- ==========================================
          SCENE 1: MOTORCYCLE ARRIVAL & BOUQUET

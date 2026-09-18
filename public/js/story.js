@@ -1,6 +1,19 @@
 // Interactive Story Controller for Tharushi Vishmika's Birthday
 
 document.addEventListener('DOMContentLoaded', () => {
+  // 0. LOADING SCREEN — Heart Rain → Fade → Reveal Site
+  const loadingScreen = document.getElementById('loading-screen');
+  const storyContainer = document.getElementById('story-container');
+
+  setTimeout(() => {
+    if (loadingScreen) loadingScreen.classList.add('fade-out');
+    if (storyContainer) storyContainer.style.display = '';
+    // Remove loading screen from DOM after fade
+    setTimeout(() => {
+      if (loadingScreen) loadingScreen.remove();
+    }, 1200);
+  }, 4500);
+
   // 1. Initialize Particle Engine
   const particles = new ParticleEngine('particle-canvas');
   particles.start();
@@ -70,27 +83,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const roadStripes = document.getElementById('road-stripes');
   const openLetterBtn = document.getElementById('open-letter-btn');
 
-  // Animated bike arrival sequence
+  // Animated bike arrival sequence — drives LEFT to RIGHT (forward)
   function startBikeArrival() {
     window.romanticAudio.playBikeSound();
 
-    // Bike drives in from right side
+    // Bike drives in from left side → right
     const container = document.querySelector('.night-road-container');
     const containerWidth = container ? container.offsetWidth : 800;
-    const targetRight = containerWidth * 0.1; // 10% from right edge
-    let currentRight = -300;
+    const targetLeft = containerWidth * 0.55; // stops past center-right
+    let currentLeft = -300;
 
     const driveInterval = setInterval(() => {
-      currentRight += 6;
-      if (bikeDriving) bikeDriving.style.right = `${currentRight}px`;
+      currentLeft += 7;
+      if (bikeDriving) bikeDriving.style.left = `${currentLeft}px`;
 
-      if (currentRight >= targetRight) {
+      if (currentLeft >= targetLeft) {
         clearInterval(driveInterval);
         if (roadStripes) roadStripes.classList.add('stopped');
 
         // Phase 2: Rider gets off — hide driving bike, show parked bike + standing boy
         setTimeout(() => {
-          // Swap: hide driving bike with rider, show parked bike without rider
           if (bikeDriving) bikeDriving.classList.add('hidden');
           if (parkedBike) parkedBike.classList.add('visible');
 
@@ -108,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 speechBubble.classList.add('visible');
               }
 
-              // Dancing girl appears
+              // Girl walks in from right toward the boy
               setTimeout(() => {
                 if (dancingGirl) {
                   dancingGirl.classList.remove('hidden');
@@ -122,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     arrivalAction.classList.remove('hidden');
                     arrivalAction.classList.add('visible');
                   }
-                }, 800);
+                }, 2800); // Wait for girl to finish walking
               }, 1000);
             }, 800);
           }, 500);
@@ -131,10 +143,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 20);
   }
 
-  // Start arrival shortly after page loads
+  // Start arrival AFTER loading screen fades (4.5s loading + 0.5s buffer)
   setTimeout(() => {
     startBikeArrival();
-  }, 1200);
+  }, 5200);
 
   if (openLetterBtn) {
     openLetterBtn.addEventListener('click', () => {
