@@ -1,10 +1,20 @@
 // Interactive Story Controller for Tharushi Vishmika's Birthday
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 0. LOADING SCREEN — Heart Rain → Fade → Reveal Site
+  // Check if user is on mobile/tablet or screen width is less than 960px
+  const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 960;
+  const mobileOverlay = document.getElementById('desktop-only-overlay');
   const loadingScreen = document.getElementById('loading-screen');
   const storyContainer = document.getElementById('story-container');
 
+  if (isMobileDevice) {
+    if (mobileOverlay) mobileOverlay.style.display = 'flex';
+    if (loadingScreen) loadingScreen.style.display = 'none';
+    if (storyContainer) storyContainer.style.display = 'none';
+    return; // Halt execution: do not start animation or audio on phone
+  }
+
+  // 0. LOADING SCREEN — Heart Rain → Fade → Reveal Site
   setTimeout(() => {
     if (loadingScreen) loadingScreen.classList.add('fade-out');
     if (storyContainer) storyContainer.style.display = '';

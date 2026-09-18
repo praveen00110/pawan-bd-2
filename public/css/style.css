@@ -1288,9 +1288,97 @@ body {
   .polaroid-photo {
     height: 140px;
   }
-  .audio-control-bar {
-    top: 12px;
-    right: 12px;
-    padding: 6px 12px;
+}
+
+/* ============ DESKTOP ONLY NOTICE (MOBILE BLOCKER) ============ */
+.desktop-only-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000000;
+  background: radial-gradient(circle at 50% 35%, #2a0845 0%, #150628 60%, #080214 100%);
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.desktop-only-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1.5px solid rgba(255, 180, 200, 0.4);
+  border-radius: 28px;
+  padding: 36px 28px;
+  max-width: 440px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 35px rgba(255, 100, 150, 0.35);
+  animation: floatCardSlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes floatCardSlow {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
+}
+
+.desktop-device-icon {
+  font-size: 4.2rem;
+  margin-bottom: 16px;
+  filter: drop-shadow(0 0 20px rgba(255, 117, 143, 0.8));
+  animation: pulseDevice 2s ease-in-out infinite;
+}
+
+@keyframes pulseDevice {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.desktop-only-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.85rem;
+  color: #ffccd5;
+  margin-bottom: 14px;
+  line-height: 1.35;
+  text-shadow: 0 0 15px rgba(255, 117, 143, 0.5);
+}
+
+.desktop-only-desc {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #e2e8f0;
+  margin-bottom: 24px;
+}
+
+.desktop-only-badge {
+  background: linear-gradient(135deg, #ff4d6d, #c9184a);
+  color: #ffffff;
+  padding: 14px 20px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  box-shadow: 0 8px 25px rgba(201, 24, 74, 0.5);
+  margin-bottom: 18px;
+  display: inline-block;
+  letter-spacing: 0.5px;
+}
+
+.desktop-only-foot {
+  font-family: 'Sacramento', cursive;
+  font-size: 1.65rem;
+  color: #ffb4c2;
+  margin: 0;
+}
+
+/* Enforce desktop overlay on screens narrower than 960px or mobile devices */
+@media (max-width: 960px) {
+  .desktop-only-overlay {
+    display: flex !important;
+  }
+  .loading-screen,
+  .story-container,
+  #particle-canvas {
+    display: none !important;
   }
 }
