@@ -75,7 +75,7 @@ class RomanticAudioEngine {
   }
 
   playPianoNote(freq, time, duration, gainLevel = 0.35, isBass = false) {
-    if (!this.ctx || this.isMuted) return;
+    if (!this.ctx) return;
 
     // Harmonic richness (primary + subtle warm overtone)
     const osc1 = this.ctx.createOscillator();
@@ -149,39 +149,12 @@ class RomanticAudioEngine {
     playNext();
   }
 
-  toggleMusic() {
-    if (this.isMuted) {
-      this.unmute();
-      return true;
-    } else {
-      this.mute();
-      return false;
-    }
-  }
-
-  mute() {
-    this.isMuted = true;
-    if (this.masterGain && this.ctx) {
-      this.masterGain.gain.setValueAtTime(0, this.ctx.currentTime);
-    }
-  }
-
-  unmute() {
-    this.isMuted = false;
-    if (this.masterGain && this.ctx) {
-      this.masterGain.gain.setValueAtTime(this.volume, this.ctx.currentTime);
-    }
-    if (!this.isPlaying) {
-      this.startRomanticMelody();
-    }
-  }
-
   // CINEMATIC SFX
 
   // 1. Motorcycle Arrival Engine Hum
   playBikeSound() {
     this.init();
-    if (!this.ctx || this.isMuted) return;
+    if (!this.ctx) return;
     const now = this.ctx.currentTime;
 
     // Throaty twin engine rumble simulation
@@ -223,7 +196,7 @@ class RomanticAudioEngine {
   // 2. Letter Unfolding / Rustle sound
   playLetterSound() {
     this.init();
-    if (!this.ctx || this.isMuted) return;
+    if (!this.ctx) return;
     const now = this.ctx.currentTime;
 
     // Soft white noise burst for paper sound
@@ -257,7 +230,7 @@ class RomanticAudioEngine {
   // 3. Candle Blow Sound (Gentle wind whoosh)
   playCandleBlowSound() {
     this.init();
-    if (!this.ctx || this.isMuted) return;
+    if (!this.ctx) return;
     const now = this.ctx.currentTime;
 
     const bufferSize = this.ctx.sampleRate * 0.8;
@@ -290,7 +263,7 @@ class RomanticAudioEngine {
   // 4. Cake Slicing Chime
   playSliceSound() {
     this.init();
-    if (!this.ctx || this.isMuted) return;
+    if (!this.ctx) return;
     const now = this.ctx.currentTime;
 
     const osc = this.ctx.createOscillator();
@@ -313,7 +286,7 @@ class RomanticAudioEngine {
   // 5. Confetti & Celebration Chimes
   playCelebrationSound() {
     this.init();
-    if (!this.ctx || this.isMuted) return;
+    if (!this.ctx) return;
     const notes = [523.25, 659.25, 783.99, 1046.50, 1318.51];
     const now = this.ctx.currentTime;
 

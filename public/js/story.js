@@ -18,39 +18,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const particles = new ParticleEngine('particle-canvas');
   particles.start();
 
-  // 2. Audio control & Autoplay handling
-  const musicBtn = document.getElementById('music-toggle-btn');
-  const musicDisk = document.getElementById('music-disk');
-  const musicLabel = document.getElementById('music-label');
-
+  // 2. AUTO-START MUSIC — plays always, no mute button
   let audioStarted = false;
-  const startAudioOnce = () => {
-    if (!audioStarted) {
-      audioStarted = true;
-      window.romanticAudio.startRomanticMelody();
-      if (musicDisk) musicDisk.classList.remove('paused');
-      if (musicLabel) musicLabel.textContent = 'Music Playing ♫';
-    }
+  const forceStartAudio = () => {
+    if (audioStarted) return;
+    audioStarted = true;
+    window.romanticAudio.startRomanticMelody();
   };
 
-  // Start music on first interaction anywhere
-  document.body.addEventListener('click', startAudioOnce, { once: true });
-  document.body.addEventListener('touchstart', startAudioOnce, { once: true });
+  // Try to start immediately
+  forceStartAudio();
 
-  if (musicBtn) {
-    musicBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      startAudioOnce();
-      const isNowPlaying = window.romanticAudio.toggleMusic();
-      if (isNowPlaying) {
-        musicDisk.classList.remove('paused');
-        musicLabel.textContent = 'Music Playing ♫';
-      } else {
-        musicDisk.classList.add('paused');
-        musicLabel.textContent = 'Music Paused';
-      }
-    });
-  }
+  // Browsers may block autoplay — retry on ANY interaction as fallback
+  ['click', 'touchstart', 'keydown', 'scroll', 'mousemove'].forEach(evt => {
+    document.addEventListener(evt, forceStartAudio, { once: true });
+  });
 
   // 3. Scene Management
   const scenes = {
