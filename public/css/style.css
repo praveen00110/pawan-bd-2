@@ -1,0 +1,1063 @@
+/* Modern Romantic Aesthetics for Tharushi Vishmika's Birthday */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Sacramento&display=swap');
+
+:root {
+  --primary-pink: #ff758f;
+  --deep-rose: #c9184a;
+  --accent-gold: #ffd166;
+  --warm-glow: rgba(255, 183, 195, 0.4);
+  --night-bg-1: #060814;
+  --night-bg-2: #140d2b;
+  --night-bg-3: #2d1235;
+  --parchment: #fffdfa;
+  --card-glass: rgba(255, 255, 255, 0.08);
+  --card-border: rgba(255, 192, 203, 0.25);
+  --text-primary: #ffffff;
+  --text-muted: #e2e8f0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: radial-gradient(circle at 50% 20%, var(--night-bg-2) 0%, var(--night-bg-1) 80%, #030408 100%);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  user-select: none;
+}
+
+/* Background Canvas for stars, petals, fireworks */
+#particle-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Ambient Audio Bar */
+.audio-control-bar {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(18, 14, 30, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  padding: 8px 16px;
+  border-radius: 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.music-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffb4c2;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.music-disk {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, #ff758f, #ffb703, #c9184a, #ff758f);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: spinDisk 3.5s linear infinite;
+}
+
+.music-disk.paused {
+  animation-play-state: paused;
+  opacity: 0.6;
+}
+
+.music-disk-center {
+  width: 10px;
+  height: 10px;
+  background: #110f1e;
+  border-radius: 50%;
+}
+
+@keyframes spinDisk {
+  100% { transform: rotate(360deg); }
+}
+
+/* Main Story Wrapper */
+.story-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Scene base styles */
+.story-scene {
+  display: none;
+  width: 100%;
+  min-height: 100vh;
+  padding: 40px 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.story-scene.active {
+  display: flex;
+  position: relative;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scene 1: Arrival */
+.arrival-stage {
+  width: 100%;
+  max-width: 1000px;
+  text-align: center;
+  position: relative;
+}
+
+.scene-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  background: linear-gradient(135deg, #fff 20%, #ffccd5 60%, #ffd166 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 12px;
+  text-shadow: 0 0 30px rgba(255, 117, 143, 0.4);
+}
+
+.scene-subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: #ffccd5;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+}
+
+/* Road and Nightscape */
+.night-road-container {
+  width: 100%;
+  height: 380px;
+  position: relative;
+  margin: 20px 0;
+  overflow: hidden;
+  border-radius: 24px;
+  background: linear-gradient(to bottom, #070919 0%, #151633 60%, #222238 90%, #181926 100%);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+}
+
+/* Crescent Moon & Clouds */
+.moon {
+  position: absolute;
+  top: 35px;
+  right: 60px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  box-shadow: -8px 8px 0 0 #fffbe6;
+  filter: drop-shadow(0 0 15px rgba(255, 251, 230, 0.8));
+}
+
+.street-lamp {
+  position: absolute;
+  bottom: 60px;
+  left: 20%;
+  width: 40px;
+  height: 180px;
+  z-index: 2;
+}
+
+.lamp-glow {
+  position: absolute;
+  top: -15px;
+  left: 5px;
+  width: 30px;
+  height: 30px;
+  background: #ffeb99;
+  border-radius: 50%;
+  box-shadow: 0 0 45px 25px rgba(255, 235, 153, 0.45);
+}
+
+.lamp-pole {
+  position: absolute;
+  top: 15px;
+  left: 18px;
+  width: 6px;
+  height: 165px;
+  background: #333;
+}
+
+.road-surface {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: #1c1c24;
+  border-top: 3px solid #3a3a4c;
+}
+
+.road-stripes {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 200%;
+  height: 4px;
+  background: repeating-linear-gradient(90deg, #f5d76e, #f5d76e 40px, transparent 40px, transparent 80px);
+  animation: moveRoad 2.5s linear infinite;
+}
+
+.road-stripes.stopped {
+  animation-play-state: paused;
+}
+
+@keyframes moveRoad {
+  from { transform: translateX(0); }
+  to { transform: translateX(-80px); }
+}
+
+/* Bike and Rider */
+.bike-rider-actor {
+  position: absolute;
+  bottom: 25px;
+  left: -280px;
+  width: 260px;
+  height: 180px;
+  z-index: 5;
+  transition: transform 0.1s linear;
+}
+
+/* Headlight Light Cone */
+.headlight-cone {
+  position: absolute;
+  top: 65px;
+  right: -240px;
+  width: 260px;
+  height: 110px;
+  background: linear-gradient(90deg, rgba(255, 245, 180, 0.75) 0%, rgba(255, 245, 180, 0) 100%);
+  clip-path: polygon(0 40%, 100% 0%, 100% 100%, 0 70%);
+  filter: blur(4px);
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+/* Delivery Interaction Box */
+.delivery-box {
+  margin-top: 25px;
+  background: var(--card-glass);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  padding: 24px 30px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  max-width: 580px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.delivery-box.hidden {
+  display: none;
+}
+
+.bouquet-preview {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.bouquet-icon {
+  font-size: 3.8rem;
+  filter: drop-shadow(0 0 15px rgba(255, 117, 143, 0.7));
+  animation: gentlePulse 2s ease-in-out infinite;
+}
+
+.envelope-trigger-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #c9184a, #ff758f);
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(201, 24, 74, 0.5);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.envelope-trigger-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(201, 24, 74, 0.7);
+}
+
+/* Scene 2: Letter & Photos */
+.letter-stage {
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.parchment-letter {
+  background: linear-gradient(135deg, #fffcf5 0%, #faebd7 100%);
+  color: #3b2a2a;
+  border-radius: 24px;
+  padding: clamp(24px, 5vw, 50px);
+  width: 100%;
+  max-width: 780px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(255, 182, 193, 0.3);
+  border: 1px solid rgba(212, 163, 115, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.parchment-letter::before {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 2px dashed rgba(189, 137, 85, 0.3);
+  border-radius: 16px;
+  pointer-events: none;
+}
+
+.letter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(189, 137, 85, 0.25);
+  padding-bottom: 14px;
+}
+
+.wax-seal-badge {
+  width: 44px;
+  height: 44px;
+  background: #a4161a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffd166;
+  font-weight: bold;
+  font-family: 'Playfair Display', serif;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.4), 0 3px 10px rgba(164, 22, 26, 0.6);
+  font-size: 0.95rem;
+}
+
+.letter-date {
+  font-family: 'Sacramento', cursive;
+  font-size: 1.8rem;
+  color: #8c5d39;
+}
+
+.salutation {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  color: #800f2f;
+  margin-bottom: 16px;
+}
+
+.letter-body {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+  line-height: 1.85;
+  color: #4a2c2c;
+  margin-bottom: 24px;
+}
+
+.letter-signature {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.2rem;
+  color: #a4161a;
+  text-align: right;
+  margin-top: 10px;
+}
+
+/* 3D Polaroid Memory Wall */
+.memory-gallery-section {
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.gallery-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem;
+  color: #ffccd5;
+  margin-bottom: 8px;
+}
+
+.gallery-sub {
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  margin-bottom: 25px;
+}
+
+.polaroid-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  perspective: 1000px;
+}
+
+.polaroid-card {
+  background: #ffffff;
+  padding: 12px 12px 26px 12px;
+  border-radius: 6px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.4), 0 4px 10px rgba(0,0,0,0.2);
+  width: 175px;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+  position: relative;
+  text-align: center;
+}
+
+.polaroid-card:nth-child(1) { transform: rotate(-4deg); }
+.polaroid-card:nth-child(2) { transform: rotate(3deg); }
+.polaroid-card:nth-child(3) { transform: rotate(-2deg); }
+.polaroid-card:nth-child(4) { transform: rotate(5deg); }
+.polaroid-card:nth-child(5) { transform: rotate(-3deg); }
+
+.polaroid-card:hover {
+  transform: scale(1.08) rotate(0deg) !important;
+  box-shadow: 0 20px 45px rgba(255, 117, 143, 0.45);
+  z-index: 10;
+}
+
+.polaroid-tape {
+  position: absolute;
+  top: -10px;
+  left: 35%;
+  width: 50px;
+  height: 18px;
+  background: rgba(255, 230, 180, 0.65);
+  transform: rotate(-3deg);
+  border-radius: 2px;
+}
+
+.polaroid-photo {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 3px;
+  background: #eee;
+  display: block;
+}
+
+.polaroid-caption {
+  font-family: 'Sacramento', cursive;
+  font-size: 1.45rem;
+  color: #3b2a2a;
+  margin-top: 10px;
+  display: block;
+}
+
+/* Scene 3: Birthday Cake Stage */
+.cake-stage {
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cake-wrapper {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  margin: 30px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Cake graphics */
+.cake-stand {
+  position: absolute;
+  bottom: 20px;
+  width: 280px;
+  height: 14px;
+  background: linear-gradient(180deg, #d4af37, #aa8c2c);
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.cake-tier-bottom {
+  position: absolute;
+  bottom: 34px;
+  width: 220px;
+  height: 90px;
+  background: linear-gradient(135deg, #ffccd5, #ff758f);
+  border-radius: 12px;
+  box-shadow: inset 0 -6px 12px rgba(0,0,0,0.15), 0 5px 15px rgba(0,0,0,0.3);
+  overflow: hidden;
+}
+
+.cake-frosting {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 25px;
+  background: #ffffff;
+  border-radius: 0 0 12px 12px;
+}
+
+.cake-tier-top {
+  position: absolute;
+  bottom: 124px;
+  width: 150px;
+  height: 75px;
+  background: linear-gradient(135deg, #ffccd5, #ff758f);
+  border-radius: 12px;
+  box-shadow: inset 0 -5px 10px rgba(0,0,0,0.15), 0 5px 15px rgba(0,0,0,0.25);
+  overflow: hidden;
+}
+
+.cake-decorations {
+  position: absolute;
+  top: 6px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.1rem;
+}
+
+/* Candles */
+.candles-group {
+  position: absolute;
+  bottom: 199px;
+  display: flex;
+  gap: 22px;
+  z-index: 5;
+}
+
+.candle-item {
+  width: 12px;
+  height: 48px;
+  background: repeating-linear-gradient(45deg, #fff, #fff 4px, #ffd166 4px, #ffd166 8px);
+  border-radius: 4px;
+  position: relative;
+}
+
+.candle-wick {
+  position: absolute;
+  top: -8px;
+  left: 5px;
+  width: 2px;
+  height: 8px;
+  background: #444;
+}
+
+.flame {
+  position: absolute;
+  top: -24px;
+  left: 0;
+  width: 14px;
+  height: 22px;
+  background: radial-gradient(circle at 50% 80%, #ffd166 0%, #ff5400 70%, transparent 100%);
+  border-radius: 50% 50% 20% 20% / 60% 60% 40% 40%;
+  box-shadow: 0 0 18px 8px rgba(255, 209, 102, 0.6);
+  animation: flickerFlame 0.15s ease-in-out infinite alternate;
+  transform-origin: bottom center;
+}
+
+.flame.blown-out {
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.4s ease;
+}
+
+.smoke-cloud {
+  position: absolute;
+  top: -30px;
+  left: -5px;
+  font-size: 1.2rem;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.smoke-cloud.rise {
+  animation: smokeRise 1.5s ease-out forwards;
+}
+
+@keyframes smokeRise {
+  0% { opacity: 0.8; transform: translateY(0) scale(0.6); }
+  100% { opacity: 0; transform: translateY(-35px) scale(1.8); }
+}
+
+@keyframes flickerFlame {
+  0% { transform: scale(1) rotate(-2deg); }
+  100% { transform: scale(1.1) rotate(2deg); }
+}
+
+/* Interactive Knife */
+.interactive-knife {
+  position: absolute;
+  top: 40px;
+  right: -30px;
+  font-size: 3.5rem;
+  cursor: pointer;
+  z-index: 20;
+  transition: transform 0.3s;
+  animation: bounceKnife 1.8s infinite ease-in-out;
+}
+
+@keyframes bounceKnife {
+  0%, 100% { transform: translateY(0) rotate(-15deg); }
+  50% { transform: translateY(-12px) rotate(-25deg); }
+}
+
+.cake-cut-line {
+  position: absolute;
+  top: 124px;
+  left: 50%;
+  width: 3px;
+  height: 165px;
+  background: #fff;
+  opacity: 0;
+  box-shadow: 0 0 10px #ff758f;
+  transform: translateX(-50%);
+  transition: opacity 0.3s;
+}
+
+.cake-cut-line.visible {
+  opacity: 1;
+}
+
+.cake-slice-part {
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cake-slice-part.separated {
+  transform: translateX(18px) rotate(4deg);
+}
+
+.cake-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+/* Scene 4: Sitting Down & Thinking Animation */
+.sitting-stage {
+  max-width: 900px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.starry-meadow-container {
+  width: 100%;
+  height: 420px;
+  position: relative;
+  margin: 20px 0;
+  border-radius: 24px;
+  background: radial-gradient(circle at 50% 30%, #1c1538 0%, #0c0919 75%, #05040a 100%);
+  border: 1px solid var(--card-border);
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+}
+
+/* Fairy Lights string across meadow */
+.fairy-lights-string {
+  position: absolute;
+  top: 25px;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 20px;
+  z-index: 2;
+}
+
+.fairy-bulb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ffd166;
+  box-shadow: 0 0 15px 5px rgba(255, 209, 102, 0.6);
+  animation: bulbTwinkle 2.5s ease-in-out infinite alternate;
+}
+
+.fairy-bulb:nth-child(2n) {
+  background: #ff758f;
+  box-shadow: 0 0 15px 5px rgba(255, 117, 143, 0.6);
+  animation-delay: 0.8s;
+}
+
+.fairy-bulb:nth-child(3n) {
+  background: #a2d2ff;
+  box-shadow: 0 0 15px 5px rgba(162, 210, 255, 0.6);
+  animation-delay: 1.4s;
+}
+
+@keyframes bulbTwinkle {
+  0% { opacity: 0.4; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1.15); }
+}
+
+/* Parked bike in the background */
+.parked-bike-silhouette {
+  position: absolute;
+  bottom: 45px;
+  left: 12%;
+  width: 170px;
+  height: 110px;
+  opacity: 0.55;
+  filter: drop-shadow(0 0 10px rgba(0,0,0,0.8));
+}
+
+/* Boy Sitting Looking Up */
+.sitting-boy-wrapper {
+  position: absolute;
+  bottom: 30px;
+  left: 45%;
+  transform: translateX(-50%);
+  width: 160px;
+  height: 170px;
+  z-index: 10;
+}
+
+/* Thought Cloud Animation */
+.thought-cloud-container {
+  position: absolute;
+  bottom: 210px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+
+.thought-dots {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.dot-1 {
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255, 117, 143, 0.5);
+}
+
+.dot-2 {
+  width: 16px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 117, 143, 0.6);
+}
+
+.thought-bubble-box {
+  background: rgba(255, 255, 255, 0.92);
+  color: #2b1028;
+  padding: 16px 24px;
+  border-radius: 30px;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  font-weight: 600;
+  max-width: 380px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(255, 117, 143, 0.45);
+  animation: floatThought 3.5s ease-in-out infinite alternate;
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes floatThought {
+  0% { transform: translateY(0) scale(0.98); }
+  100% { transform: translateY(-8px) scale(1.02); }
+}
+
+/* Tharushi's Star Halo in the sky above him */
+.gazing-target {
+  position: absolute;
+  top: 40px;
+  right: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 5;
+}
+
+.tharushi-constellation-photo {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  border: 3px solid #ffccd5;
+  box-shadow: 0 0 25px 8px rgba(255, 117, 143, 0.7);
+  object-fit: cover;
+  animation: haloPulse 3s infinite ease-in-out;
+}
+
+@keyframes haloPulse {
+  0%, 100% { box-shadow: 0 0 20px 6px rgba(255, 117, 143, 0.6); }
+  50% { box-shadow: 0 0 35px 14px rgba(255, 209, 102, 0.8); }
+}
+
+/* Scene 5: Tharushi's Reply Stage */
+.reply-stage {
+  max-width: 700px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reply-card {
+  background: var(--card-glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--card-border);
+  border-radius: 28px;
+  padding: clamp(24px, 5vw, 40px);
+  width: 100%;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.reply-prompt-question {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  color: #ffccd5;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.quick-reactions-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.reaction-pill {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 180, 200, 0.3);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.reaction-pill:hover, .reaction-pill.selected {
+  background: linear-gradient(135deg, #ff758f, #c9184a);
+  border-color: #ff758f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(201, 24, 74, 0.4);
+}
+
+.reply-textarea {
+  width: 100%;
+  height: 120px;
+  background: rgba(10, 8, 20, 0.6);
+  border: 1px solid rgba(255, 180, 200, 0.4);
+  border-radius: 16px;
+  padding: 16px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1.05rem;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.reply-textarea:focus {
+  border-color: #ff758f;
+  box-shadow: 0 0 15px rgba(255, 117, 143, 0.35);
+}
+
+.submit-reply-btn {
+  background: linear-gradient(135deg, #c9184a 0%, #ff758f 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 16px 32px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(201, 24, 74, 0.5);
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.submit-reply-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(201, 24, 74, 0.7);
+}
+
+.reply-success-card {
+  display: none;
+  text-align: center;
+  padding: 30px;
+  background: rgba(40, 167, 69, 0.15);
+  border: 1px solid rgba(40, 167, 69, 0.4);
+  border-radius: 20px;
+}
+
+.whatsapp-share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #25d366;
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-weight: 600;
+  margin-top: 15px;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+  transition: transform 0.2s;
+}
+
+.whatsapp-share-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* General Navigation Buttons */
+.nav-btn {
+  background: linear-gradient(135deg, #ff758f, #c9184a);
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(255, 117, 143, 0.4);
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.nav-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(255, 117, 143, 0.6);
+}
+
+/* Lightbox Modal for Photos */
+.lightbox-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(8px);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.lightbox-modal.active {
+  display: flex;
+}
+
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 80vh;
+  border-radius: 12px;
+  border: 3px solid #ffccd5;
+  box-shadow: 0 0 40px rgba(255, 117, 143, 0.5);
+  object-fit: contain;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 25px;
+  right: 30px;
+  color: #fff;
+  font-size: 2.2rem;
+  cursor: pointer;
+}
+
+/* Keyframe animations */
+@keyframes gentlePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .night-road-container {
+    height: 320px;
+  }
+  .starry-meadow-container {
+    height: 380px;
+  }
+  .polaroid-grid {
+    gap: 14px;
+  }
+  .polaroid-card {
+    width: 145px;
+    padding: 8px 8px 20px 8px;
+  }
+  .polaroid-photo {
+    height: 140px;
+  }
+  .audio-control-bar {
+    top: 12px;
+    right: 12px;
+    padding: 6px 12px;
+  }
+}
