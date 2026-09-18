@@ -145,6 +145,23 @@ body {
   position: relative;
 }
 
+.scene-title-cursive {
+  font-family: 'Sacramento', cursive;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  color: #ff4d6d;
+  margin-bottom: 4px;
+  letter-spacing: 2px;
+  text-shadow: 0 0 20px rgba(255, 77, 109, 0.5);
+}
+
+.scene-title-bold {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+  color: #ffffff;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 15px rgba(0,0,0,0.5);
+}
+
 .scene-title {
   font-family: 'Playfair Display', serif;
   font-size: clamp(2.2rem, 5vw, 3.8rem);
@@ -152,7 +169,6 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 12px;
-  text-shadow: 0 0 30px rgba(255, 117, 143, 0.4);
 }
 
 .scene-subtitle {
@@ -162,58 +178,198 @@ body {
   letter-spacing: 1px;
 }
 
+/* Floating Hearts */
+.floating-hearts-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.floating-heart {
+  position: absolute;
+  bottom: -40px;
+  font-size: 1.4rem;
+  opacity: 0.7;
+  animation: floatHeartUp 7s ease-in-out infinite;
+}
+
+@keyframes floatHeartUp {
+  0% { transform: translateY(0) rotate(0deg) scale(0.7); opacity: 0; }
+  10% { opacity: 0.8; }
+  50% { transform: translateY(-55vh) rotate(15deg) scale(1); opacity: 0.6; }
+  100% { transform: translateY(-110vh) rotate(-10deg) scale(0.5); opacity: 0; }
+}
+
 /* Road and Nightscape */
 .night-road-container {
   width: 100%;
-  height: 380px;
+  height: 440px;
   position: relative;
-  margin: 20px 0;
+  margin: 10px 0 20px;
   overflow: hidden;
   border-radius: 24px;
-  background: linear-gradient(to bottom, #070919 0%, #151633 60%, #222238 90%, #181926 100%);
-  border: 1px solid var(--card-border);
+  background: linear-gradient(to bottom, #1a0a2e 0%, #2d1250 40%, #3a1558 70%, #261040 100%);
+  border: 1px solid rgba(255, 100, 150, 0.25);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
 }
 
-/* Crescent Moon & Clouds */
-.moon {
+/* Big Glowing Full Moon */
+.big-moon {
   position: absolute;
-  top: 35px;
-  right: 60px;
-  width: 55px;
-  height: 55px;
+  top: 30px;
+  right: 70px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
-  box-shadow: -8px 8px 0 0 #fffbe6;
-  filter: drop-shadow(0 0 15px rgba(255, 251, 230, 0.8));
+  background: radial-gradient(circle, #fffde7 0%, #fff9c4 40%, #ffecb3 80%);
+  box-shadow: 0 0 40px 18px rgba(255, 249, 196, 0.55), 0 0 80px 30px rgba(255, 236, 179, 0.25);
 }
 
-.street-lamp {
+/* Speech Bubble */
+.speech-bubble-box {
   position: absolute;
-  bottom: 60px;
-  left: 20%;
-  width: 40px;
-  height: 180px;
-  z-index: 2;
+  top: 22px;
+  left: 25px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #2b1028;
+  padding: 12px 20px;
+  border-radius: 20px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  max-width: 380px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  z-index: 15;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.lamp-glow {
-  position: absolute;
-  top: -15px;
-  left: 5px;
-  width: 30px;
-  height: 30px;
-  background: #ffeb99;
-  border-radius: 50%;
-  box-shadow: 0 0 45px 25px rgba(255, 235, 153, 0.45);
+.speech-bubble-box.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.lamp-pole {
+.speech-bubble-box.hidden {
+  display: block;
+  opacity: 0;
+}
+
+.speech-bubble-arrow {
   position: absolute;
-  top: 15px;
-  left: 18px;
-  width: 6px;
-  height: 165px;
-  background: #333;
+  bottom: -10px;
+  left: 40px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 12px solid rgba(255, 255, 255, 0.95);
+}
+
+/* Standing Boy Character */
+.standing-boy-character {
+  position: absolute;
+  bottom: 45px;
+  left: 8%;
+  width: 140px;
+  height: 230px;
+  z-index: 10;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.standing-boy-character.visible {
+  opacity: 1;
+  transform: translateY(0);
+  animation: boyBreathing 3s ease-in-out infinite;
+}
+
+.standing-boy-character.hidden {
+  display: block;
+  opacity: 0;
+}
+
+@keyframes boyBreathing {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+/* Parked Motorcycle (static, visible after arrival) */
+.parked-motorcycle {
+  position: absolute;
+  bottom: 30px;
+  right: 10%;
+  width: 280px;
+  height: 150px;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.parked-motorcycle.visible {
+  opacity: 1;
+}
+
+/* Bike driving in (has rider, animates from right) */
+.bike-rider-driving {
+  position: absolute;
+  bottom: 30px;
+  right: -300px;
+  width: 260px;
+  height: 140px;
+  z-index: 8;
+  transition: right 0.05s linear;
+}
+
+.bike-rider-driving.hidden {
+  display: none;
+}
+
+/* Headlight Light Cone */
+.headlight-cone {
+  position: absolute;
+  top: 10px;
+  right: -220px;
+  width: 240px;
+  height: 90px;
+  background: linear-gradient(90deg, rgba(255, 245, 180, 0.7) 0%, rgba(255, 245, 180, 0) 100%);
+  clip-path: polygon(0 35%, 100% 0%, 100% 100%, 0 65%);
+  filter: blur(4px);
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+/* Dancing Girl Character */
+.dancing-girl-character {
+  position: absolute;
+  bottom: 45px;
+  right: 42%;
+  width: 120px;
+  height: 200px;
+  z-index: 12;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.dancing-girl-character.visible {
+  opacity: 1;
+  animation: girlDancing 1.5s ease-in-out infinite;
+}
+
+.dancing-girl-character.hidden {
+  display: block;
+  opacity: 0;
+}
+
+@keyframes girlDancing {
+  0% { transform: rotate(0deg) translateY(0); }
+  25% { transform: rotate(4deg) translateY(-8px); }
+  50% { transform: rotate(0deg) translateY(0); }
+  75% { transform: rotate(-4deg) translateY(-8px); }
+  100% { transform: rotate(0deg) translateY(0); }
 }
 
 .road-surface {
@@ -221,7 +377,7 @@ body {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 70px;
+  height: 55px;
   background: #1c1c24;
   border-top: 3px solid #3a3a4c;
 }
@@ -231,9 +387,10 @@ body {
   top: 50%;
   left: 0;
   width: 200%;
-  height: 4px;
-  background: repeating-linear-gradient(90deg, #f5d76e, #f5d76e 40px, transparent 40px, transparent 80px);
+  height: 6px;
+  background: repeating-linear-gradient(90deg, #f5d76e, #f5d76e 45px, transparent 45px, transparent 90px);
   animation: moveRoad 2.5s linear infinite;
+  border-radius: 3px;
 }
 
 .road-stripes.stopped {
@@ -242,85 +399,50 @@ body {
 
 @keyframes moveRoad {
   from { transform: translateX(0); }
-  to { transform: translateX(-80px); }
+  to { transform: translateX(-90px); }
 }
 
-/* Bike and Rider */
-.bike-rider-actor {
-  position: absolute;
-  bottom: 25px;
-  left: -280px;
-  width: 260px;
-  height: 180px;
-  z-index: 5;
-  transition: transform 0.1s linear;
-}
-
-/* Headlight Light Cone */
-.headlight-cone {
-  position: absolute;
-  top: 65px;
-  right: -240px;
-  width: 260px;
-  height: 110px;
-  background: linear-gradient(90deg, rgba(255, 245, 180, 0.75) 0%, rgba(255, 245, 180, 0) 100%);
-  clip-path: polygon(0 40%, 100% 0%, 100% 100%, 0 70%);
-  filter: blur(4px);
-  pointer-events: none;
-  opacity: 0.85;
-}
-
-/* Delivery Interaction Box */
-.delivery-box {
+/* Centered Take Flowers Button */
+.arrival-action-center {
   margin-top: 25px;
-  background: var(--card-glass);
-  backdrop-filter: blur(16px);
-  border: 1px solid var(--card-border);
-  padding: 24px 30px;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;
-  max-width: 580px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.delivery-box.hidden {
-  display: none;
+.arrival-action-center.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.bouquet-preview {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+.arrival-action-center.hidden {
+  display: block;
+  opacity: 0;
+  pointer-events: none;
 }
 
-.bouquet-icon {
-  font-size: 3.8rem;
-  filter: drop-shadow(0 0 15px rgba(255, 117, 143, 0.7));
-  animation: gentlePulse 2s ease-in-out infinite;
-}
-
-.envelope-trigger-btn {
-  display: flex;
+.take-flowers-btn {
+  display: inline-flex;
   align-items: center;
   gap: 12px;
-  background: linear-gradient(135deg, #c9184a, #ff758f);
+  background: linear-gradient(135deg, #ff4d6d, #c9184a);
   color: white;
   border: none;
-  padding: 14px 28px;
-  border-radius: 30px;
-  font-size: 1.1rem;
-  font-weight: 600;
+  padding: 16px 36px;
+  border-radius: 35px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 8px 25px rgba(201, 24, 74, 0.5);
+  box-shadow: 0 10px 30px rgba(201, 24, 74, 0.55);
   transition: transform 0.2s, box-shadow 0.2s;
+  letter-spacing: 0.5px;
 }
 
-.envelope-trigger-btn:hover {
-  transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 12px 30px rgba(201, 24, 74, 0.7);
+.take-flowers-btn:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 14px 35px rgba(201, 24, 74, 0.75);
 }
 
 /* Scene 2: Letter & Photos */

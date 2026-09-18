@@ -61,41 +61,72 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   // SCENE 1: MOTORCYCLE ARRIVAL & FLOWER DELIVERY
   // ==========================================
-  const bikeActor = document.getElementById('bike-actor');
+  const bikeDriving = document.getElementById('bike-driving');
+  const parkedBike = document.getElementById('parked-bike');
+  const standingBoy = document.getElementById('standing-boy');
+  const speechBubble = document.getElementById('speech-bubble');
+  const dancingGirl = document.getElementById('dancing-girl');
+  const arrivalAction = document.getElementById('arrival-action');
   const roadStripes = document.getElementById('road-stripes');
-  const deliveryBox = document.getElementById('delivery-box');
   const openLetterBtn = document.getElementById('open-letter-btn');
 
-  // Trigger bike arrival animation
+  // Animated bike arrival sequence
   function startBikeArrival() {
     window.romanticAudio.playBikeSound();
 
-    let pos = -280;
-    const targetPos = window.innerWidth > 768 ? 320 : 120;
-    const speed = 6;
+    // Bike drives in from right side
+    const container = document.querySelector('.night-road-container');
+    const containerWidth = container ? container.offsetWidth : 800;
+    const targetRight = containerWidth * 0.1; // 10% from right edge
+    let currentRight = -300;
 
     const driveInterval = setInterval(() => {
-      pos += speed;
-      if (bikeActor) bikeActor.style.left = `${pos}px`;
+      currentRight += 6;
+      if (bikeDriving) bikeDriving.style.right = `${currentRight}px`;
 
-      if (pos >= targetPos) {
+      if (currentRight >= targetRight) {
         clearInterval(driveInterval);
         if (roadStripes) roadStripes.classList.add('stopped');
 
-        // Rider steps down & presents flowers
+        // Phase 2: Rider gets off — hide driving bike, show parked bike + standing boy
         setTimeout(() => {
-          if (deliveryBox) {
-            deliveryBox.classList.remove('hidden');
-            deliveryBox.style.opacity = '0';
-            deliveryBox.style.transform = 'translateY(20px)';
-            deliveryBox.style.transition = 'all 0.8s ease';
+          // Swap: hide driving bike with rider, show parked bike without rider
+          if (bikeDriving) bikeDriving.classList.add('hidden');
+          if (parkedBike) parkedBike.classList.add('visible');
+
+          // Boy appears standing with bouquet and letter
+          setTimeout(() => {
+            if (standingBoy) {
+              standingBoy.classList.remove('hidden');
+              standingBoy.classList.add('visible');
+            }
+
+            // Speech bubble appears
             setTimeout(() => {
-              deliveryBox.style.opacity = '1';
-              deliveryBox.style.transform = 'translateY(0)';
-            }, 50);
-          }
-          particles.triggerConfetti(window.innerWidth / 2, window.innerHeight * 0.45, 40);
-        }, 1200);
+              if (speechBubble) {
+                speechBubble.classList.remove('hidden');
+                speechBubble.classList.add('visible');
+              }
+
+              // Dancing girl appears
+              setTimeout(() => {
+                if (dancingGirl) {
+                  dancingGirl.classList.remove('hidden');
+                  dancingGirl.classList.add('visible');
+                }
+                particles.triggerConfetti(window.innerWidth / 2, window.innerHeight * 0.45, 60);
+
+                // Show the centered "Take Flowers" button
+                setTimeout(() => {
+                  if (arrivalAction) {
+                    arrivalAction.classList.remove('hidden');
+                    arrivalAction.classList.add('visible');
+                  }
+                }, 800);
+              }, 1000);
+            }, 800);
+          }, 500);
+        }, 1000);
       }
     }, 20);
   }
@@ -103,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Start arrival shortly after page loads
   setTimeout(() => {
     startBikeArrival();
-  }, 1000);
+  }, 1200);
 
   if (openLetterBtn) {
     openLetterBtn.addEventListener('click', () => {

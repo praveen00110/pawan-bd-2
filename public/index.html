@@ -36,69 +36,206 @@
          ========================================== -->
     <section class="story-scene active" id="scene-arrival">
       <div class="arrival-stage">
-        <h1 class="scene-title">For Someone Truly Special</h1>
-        <p class="scene-subtitle">A quiet midnight ride under the starlight... just to reach you ✨</p>
+        <h1 class="scene-title-cursive">Under the Midnight Sky</h1>
+        <h2 class="scene-title-bold">Someone Just Arrived For You...</h2>
+
+        <!-- Floating Hearts Background -->
+        <div class="floating-hearts-container" id="floating-hearts">
+          <span class="floating-heart" style="left:5%;animation-delay:0s;">💗</span>
+          <span class="floating-heart" style="left:15%;animation-delay:1.2s;">💕</span>
+          <span class="floating-heart" style="left:28%;animation-delay:0.5s;">❤️</span>
+          <span class="floating-heart" style="left:42%;animation-delay:2.1s;">💖</span>
+          <span class="floating-heart" style="left:55%;animation-delay:0.8s;">💗</span>
+          <span class="floating-heart" style="left:68%;animation-delay:1.6s;">💕</span>
+          <span class="floating-heart" style="left:80%;animation-delay:0.3s;">❤️</span>
+          <span class="floating-heart" style="left:92%;animation-delay:1.9s;">💖</span>
+        </div>
 
         <div class="night-road-container">
-          <div class="moon"></div>
-          
-          <div class="street-lamp">
-            <div class="lamp-glow"></div>
-            <div class="lamp-pole"></div>
+          <!-- Big Glowing Moon -->
+          <div class="big-moon"></div>
+
+          <!-- Speech Bubble (hidden initially) -->
+          <div class="speech-bubble-box hidden" id="speech-bubble">
+            <p>"Tharushi! I came across the miles just to see you smile today 🌹"</p>
+            <div class="speech-bubble-arrow"></div>
+          </div>
+
+          <!-- Standing Boy Character (hidden initially, appears after bike stops) -->
+          <div class="standing-boy-character hidden" id="standing-boy">
+            <svg viewBox="0 0 160 260" width="140" height="230" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Smiley Face -->
+              <circle cx="80" cy="38" r="24" fill="#f8c291"/>
+              <circle cx="72" cy="33" r="3" fill="#333"/>
+              <circle cx="88" cy="33" r="3" fill="#333"/>
+              <path d="M72 45 Q80 54 88 45" stroke="#c0392b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <!-- Blush -->
+              <circle cx="66" cy="42" r="5" fill="rgba(255,150,150,0.5)"/>
+              <circle cx="94" cy="42" r="5" fill="rgba(255,150,150,0.5)"/>
+              <!-- Hair -->
+              <path d="M57 34 C56 18, 72 10, 80 12 C88 10, 104 18, 103 34 C100 26, 60 26, 57 34 Z" fill="#1a1a2e"/>
+
+              <!-- Body / Suit Jacket -->
+              <path d="M58 64 L64 130 L96 130 L102 64 Z" fill="#1d1d3d"/>
+              <!-- Tie -->
+              <path d="M78 65 L80 90 L82 65 Z" fill="#c9184a"/>
+              <!-- Neck -->
+              <rect x="74" y="58" width="12" height="10" fill="#f8c291"/>
+
+              <!-- Left Arm holding bouquet (raised) -->
+              <path d="M58 68 L38 95 L30 120" stroke="#1d1d3d" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Bouquet of flowers -->
+              <circle cx="22" cy="105" r="12" fill="#ff4d6d"/>
+              <circle cx="30" cy="95" r="10" fill="#ff758f"/>
+              <circle cx="18" cy="96" r="9" fill="#e63946"/>
+              <circle cx="26" cy="88" r="8" fill="#ffb3c1"/>
+              <line x1="25" y1="110" x2="28" y2="125" stroke="#228b22" stroke-width="4" stroke-linecap="round"/>
+              <line x1="20" y1="108" x2="18" y2="122" stroke="#228b22" stroke-width="3" stroke-linecap="round"/>
+
+              <!-- Right Arm holding letter (extended) -->
+              <path d="M102 68 L122 95 L130 110" stroke="#1d1d3d" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Glowing Envelope -->
+              <rect x="118" y="100" width="32" height="22" rx="3" fill="#fff5ee" stroke="#d4a373" stroke-width="1.5"/>
+              <path d="M118 100 L134 115 L150 100" stroke="#c9184a" stroke-width="1.5" fill="none"/>
+              <!-- Envelope glow -->
+              <rect x="115" y="97" width="38" height="28" rx="5" fill="none" stroke="rgba(255,180,194,0.6)" stroke-width="2" filter="url(#envGlow)"/>
+
+              <!-- Legs -->
+              <path d="M70 130 L66 180 L60 210" stroke="#1d1d3d" stroke-width="11" stroke-linecap="round"/>
+              <path d="M90 130 L94 180 L100 210" stroke="#1d1d3d" stroke-width="11" stroke-linecap="round"/>
+              <!-- Shoes -->
+              <ellipse cx="56" cy="213" rx="12" ry="6" fill="#111"/>
+              <ellipse cx="104" cy="213" rx="12" ry="6" fill="#111"/>
+
+              <defs>
+                <filter id="envGlow">
+                  <feGaussianBlur stdDeviation="4" result="blur"/>
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+            </svg>
+          </div>
+
+          <!-- Parked Motorcycle (hidden initially, slides in) -->
+          <div class="parked-motorcycle" id="parked-bike">
+            <div class="headlight-cone"></div>
+            <svg viewBox="0 0 300 160" width="280" height="150" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Rear Wheel -->
+              <circle cx="60" cy="120" r="34" stroke="#333" stroke-width="8" fill="#0a0a0a"/>
+              <circle cx="60" cy="120" r="18" stroke="#c9184a" stroke-width="4" fill="#111"/>
+              <circle cx="60" cy="120" r="6" fill="#c9184a"/>
+              <!-- Front Wheel -->
+              <circle cx="230" cy="120" r="34" stroke="#333" stroke-width="8" fill="#0a0a0a"/>
+              <circle cx="230" cy="120" r="18" stroke="#c9184a" stroke-width="4" fill="#111"/>
+              <circle cx="230" cy="120" r="6" fill="#c9184a"/>
+
+              <!-- Frame -->
+              <path d="M60 120 L120 108 L170 118 L230 120 L180 72 L110 72 Z" fill="#1a1a2e" stroke="#333" stroke-width="3"/>
+              <!-- Engine Block -->
+              <path d="M115 112 L165 112 L155 82 L120 82 Z" fill="#2d2d4e"/>
+              <!-- Fuel Tank (Red/Pink) -->
+              <path d="M125 68 C142 50, 175 50, 190 68 C175 78, 138 78, 125 68 Z" fill="#c9184a"/>
+              <path d="M135 62 C145 55, 165 55, 175 62" stroke="rgba(255,255,255,0.25)" stroke-width="2" fill="none"/>
+              <!-- Handlebar -->
+              <line x1="180" y1="72" x2="215" y2="52" stroke="#888" stroke-width="6" stroke-linecap="round"/>
+              <line x1="215" y1="52" x2="230" y2="54" stroke="#ddd" stroke-width="5" stroke-linecap="round"/>
+              <!-- Headlight -->
+              <circle cx="235" cy="56" r="10" fill="#ffeb99" filter="drop-shadow(0 0 12px #ffeb99)"/>
+              <!-- Seat -->
+              <path d="M115 68 C120 58, 165 56, 175 66 L170 72 L115 72 Z" fill="#222"/>
+              <!-- Exhaust -->
+              <path d="M60 130 L120 130 L155 135" stroke="#777" stroke-width="5" stroke-linecap="round"/>
+              <!-- Kickstand -->
+              <line x1="110" y1="118" x2="95" y2="152" stroke="#555" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+          </div>
+
+          <!-- Bike driving in (visible initially, replaced by parked version) -->
+          <div class="bike-rider-driving" id="bike-driving">
+            <div class="headlight-cone"></div>
+            <svg viewBox="0 0 300 160" width="260" height="140" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Wheels -->
+              <circle cx="60" cy="120" r="30" stroke="#333" stroke-width="7" fill="#0a0a0a"/>
+              <circle cx="60" cy="120" r="14" stroke="#c9184a" stroke-width="3" fill="#111"/>
+              <circle cx="220" cy="120" r="30" stroke="#333" stroke-width="7" fill="#0a0a0a"/>
+              <circle cx="220" cy="120" r="14" stroke="#c9184a" stroke-width="3" fill="#111"/>
+              <!-- Frame -->
+              <path d="M60 120 L120 108 L165 118 L220 120 L175 72 L110 72 Z" fill="#1a1a2e" stroke="#333" stroke-width="3"/>
+              <path d="M125 68 C140 52, 170 52, 185 68 C170 76, 138 76, 125 68 Z" fill="#c9184a"/>
+              <line x1="175" y1="72" x2="210" y2="52" stroke="#888" stroke-width="5" stroke-linecap="round"/>
+              <circle cx="225" cy="54" r="8" fill="#ffeb99" filter="drop-shadow(0 0 10px #ffeb99)"/>
+              <!-- Rider on bike -->
+              <path d="M120 72 L135 40 L155 42 L145 72 Z" fill="#1d1d3d"/>
+              <path d="M140 45 L185 55 L205 52" stroke="#1d1d3d" stroke-width="8" stroke-linecap="round"/>
+              <circle cx="145" cy="26" r="14" fill="#333"/>
+              <path d="M148 20 C155 20, 158 26, 157 32 L148 32 Z" fill="#ffd166"/>
+            </svg>
+          </div>
+
+          <!-- Dancing Girl Character (hidden, appears after arrival) -->
+          <div class="dancing-girl-character hidden" id="dancing-girl">
+            <svg viewBox="0 0 140 240" width="120" height="200" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Face -->
+              <circle cx="70" cy="35" r="22" fill="#f8c291"/>
+              <circle cx="63" cy="30" r="2.5" fill="#333"/>
+              <circle cx="77" cy="30" r="2.5" fill="#333"/>
+              <!-- Eyelashes -->
+              <path d="M59 28 L57 25" stroke="#333" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M81 28 L83 25" stroke="#333" stroke-width="1.5" stroke-linecap="round"/>
+              <!-- Happy smile -->
+              <path d="M62 42 Q70 52 78 42" stroke="#c0392b" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <!-- Blush -->
+              <circle cx="57" cy="40" r="5" fill="rgba(255,150,150,0.45)"/>
+              <circle cx="83" cy="40" r="5" fill="rgba(255,150,150,0.45)"/>
+              <!-- Long Hair -->
+              <path d="M48 30 C46 10, 65 2, 70 4 C75 2, 94 10, 92 30 C100 50, 95 70, 90 80 L50 80 C45 70, 40 50, 48 30 Z" fill="#1a1a2e"/>
+              <!-- Hair bangs -->
+              <path d="M52 28 C55 18, 68 14, 70 16 C72 14, 85 18, 88 28 C85 22, 55 22, 52 28 Z" fill="#1a1a2e"/>
+              <!-- Flower in hair -->
+              <circle cx="92" cy="22" r="6" fill="#ff4d6d"/>
+              <circle cx="92" cy="22" r="2.5" fill="#ffd166"/>
+
+              <!-- Dress (flowing) -->
+              <path d="M50 62 L40 170 L100 170 L90 62 Z" fill="linear-gradient(#ff758f, #c9184a)"/>
+              <path d="M50 62 L40 170 L100 170 L90 62 Z" fill="#ff4d6d"/>
+              <!-- Dress decoration -->
+              <path d="M55 90 Q70 100 85 90" stroke="rgba(255,255,255,0.35)" stroke-width="2" fill="none"/>
+              <path d="M50 120 Q70 135 90 120" stroke="rgba(255,255,255,0.25)" stroke-width="2" fill="none"/>
+              <!-- Dress swirl/flow -->
+              <path d="M40 170 Q35 175 38 180 Q45 178 48 170" fill="#e63946"/>
+              <path d="M100 170 Q105 175 102 180 Q95 178 92 170" fill="#e63946"/>
+              <!-- Neck -->
+              <rect x="64" y="55" width="12" height="9" fill="#f8c291"/>
+
+              <!-- Arms raised in joy -->
+              <path d="M50 66 L28 45 L22 30" stroke="#f8c291" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M90 66 L112 45 L118 30" stroke="#f8c291" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Hands / fingers -->
+              <circle cx="20" cy="28" r="5" fill="#f8c291"/>
+              <circle cx="120" cy="28" r="5" fill="#f8c291"/>
+              <!-- Sparkles near hands -->
+              <text x="8" y="22" font-size="14">✨</text>
+              <text x="122" y="22" font-size="14">✨</text>
+
+              <!-- Legs -->
+              <path d="M58 170 L52 210" stroke="#f8c291" stroke-width="8" stroke-linecap="round"/>
+              <path d="M82 170 L88 210" stroke="#f8c291" stroke-width="8" stroke-linecap="round"/>
+              <!-- Shoes -->
+              <ellipse cx="50" cy="214" rx="10" ry="5" fill="#c9184a"/>
+              <ellipse cx="92" cy="214" rx="10" ry="5" fill="#c9184a"/>
+            </svg>
           </div>
 
           <!-- Road Surface -->
           <div class="road-surface">
             <div class="road-stripes" id="road-stripes"></div>
           </div>
-
-          <!-- Bike & Rider SVG Actor -->
-          <div class="bike-rider-actor" id="bike-actor">
-            <div class="headlight-cone"></div>
-            <svg viewBox="0 0 280 180" width="260" height="170" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Bike Body -->
-              <circle cx="50" cy="140" r="32" stroke="#444" stroke-width="8" fill="#111"/>
-              <circle cx="50" cy="140" r="16" stroke="#bbb" stroke-width="4" fill="#222"/>
-              <circle cx="210" cy="140" r="32" stroke="#444" stroke-width="8" fill="#111"/>
-              <circle cx="210" cy="140" r="16" stroke="#bbb" stroke-width="4" fill="#222"/>
-              
-              <!-- Frame & Engine -->
-              <path d="M50 140 L115 130 L160 140 L210 140 L165 95 L105 95 Z" fill="#222" stroke="#555" stroke-width="4"/>
-              <path d="M110 135 L155 135 L145 105 L115 105 Z" fill="#444"/>
-              <line x1="165" y1="95" x2="200" y2="70" stroke="#888" stroke-width="6" stroke-linecap="round"/>
-              <line x1="200" y1="70" x2="215" y2="72" stroke="#eee" stroke-width="5" stroke-linecap="round"/>
-              <!-- Fuel Tank -->
-              <path d="M120 90 C135 75, 165 75, 175 90 C165 98, 130 98, 120 90 Z" fill="#e63946"/>
-              <!-- Headlight -->
-              <circle cx="218" cy="74" r="8" fill="#ffeb99" filter="drop-shadow(0 0 10px #ffeb99)"/>
-              <!-- Exhaust -->
-              <path d="M130 142 L185 142 L225 150" stroke="#bbb" stroke-width="6" stroke-linecap="round"/>
-
-              <!-- Rider Silhouette -->
-              <!-- Legs -->
-              <path d="M115 95 L140 120 L135 140" stroke="#1d3557" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-              <!-- Torso / Jacket -->
-              <path d="M110 95 L130 50 L170 55 L160 95 Z" fill="#1d3557"/>
-              <!-- Arm holding handlebar -->
-              <path d="M140 58 L185 68 L200 70" stroke="#1d3557" stroke-width="9" stroke-linecap="round"/>
-              <!-- Helmet & Visor -->
-              <circle cx="150" cy="32" r="18" fill="#333"/>
-              <path d="M152 24 C162 24, 166 32, 164 40 L152 40 Z" fill="#ffd166"/>
-            </svg>
-          </div>
         </div>
 
-        <!-- Delivery Reveal Box -->
-        <div class="delivery-box hidden" id="delivery-box">
-          <div class="bouquet-preview">
-            <span class="bouquet-icon">💐</span>
-            <div style="text-align: left;">
-              <h3 style="font-family: 'Playfair Display', serif; color: #ffb4c2; font-size: 1.4rem; margin-bottom: 4px;">He has arrived for you!</h3>
-              <p style="color: #cbd5e1; font-size: 0.95rem;">Bringing fresh flowers and a letter written from the depths of his heart.</p>
-            </div>
-          </div>
-          <button class="envelope-trigger-btn" id="open-letter-btn">
-            <span>Open the Letter</span> 💌
+        <!-- Centered Action Button (hidden initially) -->
+        <div class="arrival-action-center hidden" id="arrival-action">
+          <button class="take-flowers-btn" id="open-letter-btn">
+            <span>Take The Flowers & Read Letter</span> 💐💌
           </button>
         </div>
       </div>
