@@ -149,12 +149,17 @@ app.get('/view-replies', (req, res) => {
   }
 });
 
+// Health check for Railway / cloud monitoring
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
 // Fallback to index
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`\n🎉 Tharushi Vishmika's Birthday Site is running at: http://localhost:${PORT}`);
-  console.log(`💌 View replies received at: http://localhost:${PORT}/view-replies\n`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`\n🎉 Tharushi Vishmika's Birthday Site is running on port ${PORT} (0.0.0.0)`);
+  console.log(`💌 View replies received at: /view-replies\n`);
 });
